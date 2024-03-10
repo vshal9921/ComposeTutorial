@@ -1,6 +1,7 @@
 package com.example.composetutorial
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -11,14 +12,21 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarData
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -28,7 +36,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.composetutorial.R
+import com.example.composetutorial.ui.theme.ForgotPasswordStyle
 import com.example.composetutorial.ui.theme.HeadingText
+import com.example.composetutorial.ui.theme.LoginButtonColor
 import com.example.composetutorial.ui.theme.LoginText
 import com.example.composetutorial.ui.theme.SubHeading
 
@@ -51,6 +61,8 @@ fun PreviewUi(){
 
 @Composable
 fun ShowText(){
+
+    var content = LocalContext.current
 
     Column (modifier = Modifier
         .fillMaxSize()
@@ -89,9 +101,55 @@ fun ShowText(){
         OutlinedTextField(
             value = ""
             , onValueChange = {}
+            , modifier = Modifier.fillMaxWidth()
             , placeholder = {
                 Text(text = "Enter email")
             }
+            , textStyle = MaterialTheme.typography.LoginText
         )
+
+        Spacer(modifier = Modifier.padding(20.dp))
+
+        Text(
+            text = "Password",
+            style = MaterialTheme.typography.LoginText
+        )
+
+        Spacer(modifier = Modifier.padding(5.dp))
+
+        OutlinedTextField(
+            value = ""
+            , onValueChange = {}
+            , modifier = Modifier.fillMaxWidth()
+            , placeholder = {
+                Text(text = "Enter password")
+            }
+            , textStyle = MaterialTheme.typography.LoginText
+        )
+
+        Spacer(modifier = Modifier.padding(5.dp))
+
+        Text(
+            text = "Forgot password"
+            , modifier = Modifier.align(Alignment.End)
+            , style = MaterialTheme.typography.ForgotPasswordStyle
+        )
+
+        Spacer(modifier = Modifier.padding(5.dp))
+
+        Button(
+            onClick = {
+                      Toast.makeText(content,"Button clicked", Toast.LENGTH_SHORT).show()
+            }
+            , modifier = Modifier.fillMaxWidth()
+            , colors = ButtonDefaults.buttonColors(containerColor = LoginButtonColor)
+            , shape = ButtonDefaults.shape
+        ) {
+            Text(
+                text = "Sign in"
+                , style = MaterialTheme.typography.LoginText
+            )
+        }
+
     }
 }

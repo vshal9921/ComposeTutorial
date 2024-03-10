@@ -63,3 +63,21 @@ val Typography.LoginText: TextStyle
                         color = Color.Black
                 )
         }
+
+val Typography.ForgotPasswordStyle : TextStyle
+        @Composable get() {
+                return TextStyle(
+                        fontSize = 12.sp,
+                        color = ForgotColor,
+                        fontFamily = FontFamily(Font(R.font.roboto_regular, weight = FontWeight.Medium))
+                )
+        }
+
+val kotlin.text.Typography.LoginButton: TextStyle
+        @Composable get(){
+                return TextStyle(
+                        fontFamily = FontFamily(Font(R.font.roboto_regular, weight = FontWeight.Bold))
+                        , color = Color.Black
+                        , fontSize = 14.sp
+                )
+        }
