@@ -25,6 +25,8 @@ import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarData
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -43,6 +45,7 @@ import androidx.compose.ui.unit.sp
 import com.example.composetutorial.R
 import com.example.composetutorial.ui.theme.ForgotPasswordStyle
 import com.example.composetutorial.ui.theme.HeadingText
+import com.example.composetutorial.ui.theme.LoginButton
 import com.example.composetutorial.ui.theme.LoginButtonColor
 import com.example.composetutorial.ui.theme.LoginText
 import com.example.composetutorial.ui.theme.SubHeading
@@ -68,6 +71,12 @@ fun PreviewUi(){
 fun ShowText(){
 
     var content = LocalContext.current
+
+    var emailText = remember {
+
+        mutableStateOf("")
+    }
+
 
     Column (modifier = Modifier
         .fillMaxSize()
@@ -104,8 +113,10 @@ fun ShowText(){
         Spacer(modifier = Modifier.padding(5.dp))
 
         OutlinedTextField(
-            value = ""
-            , onValueChange = {}
+            value = emailText.value
+            , onValueChange = {string ->
+                emailText.value = string
+            }
             , modifier = Modifier.fillMaxWidth()
             , placeholder = {
                 Text(text = "Enter email")
@@ -158,7 +169,7 @@ fun ShowText(){
         ) {
             Text(
                 text = "Sign in"
-                , style = MaterialTheme.typography.LoginText
+                , style = MaterialTheme.typography.LoginButton
             )
         }
 

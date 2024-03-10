@@ -73,7 +73,7 @@ val Typography.ForgotPasswordStyle : TextStyle
                 )
         }
 
-val kotlin.text.Typography.LoginButton: TextStyle
+val Typography.LoginButton: TextStyle
         @Composable get(){
                 return TextStyle(
                         fontFamily = FontFamily(Font(R.font.roboto_regular, weight = FontWeight.Bold))
