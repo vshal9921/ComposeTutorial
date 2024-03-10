@@ -12,9 +12,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Snackbar
@@ -25,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -106,6 +111,12 @@ fun ShowText(){
                 Text(text = "Enter email")
             }
             , textStyle = MaterialTheme.typography.LoginText
+            , leadingIcon = {
+                Icon(painter = painterResource(id =  R.drawable.ic_email) , contentDescription = "mail icon")
+            }
+            , trailingIcon = {
+                Image(painter = painterResource(id = R.drawable.ic_right), contentDescription = "right icon")
+            }
         )
 
         Spacer(modifier = Modifier.padding(20.dp))
