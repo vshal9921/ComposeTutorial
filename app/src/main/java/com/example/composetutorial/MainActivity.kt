@@ -25,6 +25,7 @@ import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarData
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -66,7 +67,6 @@ fun PreviewUi(){
     ShowText()
 }
 
-
 @Composable
 fun ShowText(){
 
@@ -82,7 +82,13 @@ fun ShowText(){
         mutableStateOf("")
     }
 
+    var signInButtonClicked : MutableState<Boolean> = remember {
+
+        mutableStateOf(false)
+    }
+
     var isEmailFormatCorrect = Utils.isValidEmail(emailValue.value)
+    var isSignInBtnClickable = Utils.isValidEmail(emailValue.value) && passwordValue.value.length > 7
 
     Column (modifier = Modifier
         .fillMaxSize()
@@ -141,6 +147,10 @@ fun ShowText(){
             }
         )
 
+        if(signInButtonClicked.value && ! isEmailFormatCorrect){
+            Text(text = "Please enter correct email", color = Color.Red)
+        }
+
         Spacer(modifier = Modifier.padding(20.dp))
 
         Text(
@@ -163,6 +173,10 @@ fun ShowText(){
             , textStyle = MaterialTheme.typography.LoginText
         )
 
+        if(signInButtonClicked.value && passwordValue.value.length < 8){
+            Text(text = "Password shouldcontain atleast 8 characters", color = Color.Red)
+        }
+
         Spacer(modifier = Modifier.padding(5.dp))
 
         Text(
@@ -175,7 +189,16 @@ fun ShowText(){
 
         Button(
             onClick = {
-                      Toast.makeText(content,"Button clicked", Toast.LENGTH_SHORT).show()
+
+                signInButtonClicked.value = true
+
+                if(isEmailFormatCorrect && passwordValue.value.length > 7){
+                    Toast.makeText(content,"Button clicked", Toast.LENGTH_SHORT).show()
+                }
+                else {
+
+                }
+
             }
             , modifier = Modifier.fillMaxWidth()
             , colors = ButtonDefaults.buttonColors(containerColor = LoginButtonColor)
@@ -185,6 +208,13 @@ fun ShowText(){
                 text = "Sign in"
                 , style = MaterialTheme.typography.LoginButton
             )
+        }
+
+        Spacer(modifier = Modifier.padding(5.dp))
+
+        Row (modifier = Modifier.align(Alignment.CenterHorizontally)){
+            Text(text = "Don't have an account?", style = MaterialTheme.typography.ForgotPasswordStyle.copy(color = Color.Black))
+            Text(text = "Sign up here", style = MaterialTheme.typography.ForgotPasswordStyle)
         }
 
     }
