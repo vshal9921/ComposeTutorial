@@ -72,11 +72,17 @@ fun ShowText(){
 
     var content = LocalContext.current
 
-    var emailText = remember {
+    var emailValue = remember {
 
         mutableStateOf("")
     }
 
+    var passwordValue = remember {
+
+        mutableStateOf("")
+    }
+
+    var isEmailFormatCorrect = Utils.isValidEmail(emailValue.value)
 
     Column (modifier = Modifier
         .fillMaxSize()
@@ -113,10 +119,11 @@ fun ShowText(){
         Spacer(modifier = Modifier.padding(5.dp))
 
         OutlinedTextField(
-            value = emailText.value
+            value = emailValue.value
             , onValueChange = {string ->
-                emailText.value = string
+                emailValue.value = string
             }
+            , maxLines = 1
             , modifier = Modifier.fillMaxWidth()
             , placeholder = {
                 Text(text = "Enter email")
@@ -126,7 +133,11 @@ fun ShowText(){
                 Icon(painter = painterResource(id =  R.drawable.ic_email) , contentDescription = "mail icon")
             }
             , trailingIcon = {
-                Image(painter = painterResource(id = R.drawable.ic_right), contentDescription = "right icon")
+                if(isEmailFormatCorrect){
+                    Image(painter = painterResource(id = R.drawable.ic_right)
+                        , contentDescription = "right icon"
+                    )
+                }
             }
         )
 
@@ -140,8 +151,11 @@ fun ShowText(){
         Spacer(modifier = Modifier.padding(5.dp))
 
         OutlinedTextField(
-            value = ""
-            , onValueChange = {}
+            value = passwordValue.value
+            , onValueChange = {string ->
+                passwordValue.value = string
+            }
+            , maxLines = 1
             , modifier = Modifier.fillMaxWidth()
             , placeholder = {
                 Text(text = "Enter password")

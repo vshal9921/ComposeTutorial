@@ -42,7 +42,7 @@ val Typography.HeadingText: TextStyle
                 return TextStyle(
                         color = Color.Black,
                         fontSize = 24.sp,
-                        fontFamily = FontFamily(Font(R.font.roboto_regular, weight = FontWeight.Bold))
+                        fontFamily = FontFamily(Font(R.font.roboto_bold))
                 )
         }
 
@@ -50,7 +50,7 @@ val Typography.SubHeading: TextStyle
         @Composable get() {
                 return TextStyle(
                         fontSize = 12.sp,
-                        fontFamily = FontFamily(Font(R.font.roboto_regular, weight = FontWeight.Medium)),
+                        fontFamily = FontFamily(Font(R.font.roboto_medium)),
                         color = com.example.composetutorial.ui.theme.SubHeading
                 )
         }
@@ -59,7 +59,7 @@ val Typography.LoginText: TextStyle
         @Composable get() {
                 return TextStyle(
                         fontSize = 13.sp,
-                        fontFamily = FontFamily(Font(R.font.roboto_regular, weight = FontWeight.Medium)),
+                        fontFamily = FontFamily(Font(R.font.roboto_medium)),
                         color = Color.Black
                 )
         }
@@ -69,14 +69,14 @@ val Typography.ForgotPasswordStyle : TextStyle
                 return TextStyle(
                         fontSize = 12.sp,
                         color = ForgotColor,
-                        fontFamily = FontFamily(Font(R.font.roboto_regular, weight = FontWeight.Medium))
+                        fontFamily = FontFamily(Font(R.font.roboto_medium))
                 )
         }
 
 val Typography.LoginButton: TextStyle
         @Composable get(){
                 return TextStyle(
-                        fontFamily = FontFamily(Font(R.font.roboto_regular, weight = FontWeight.Bold))
+                        fontFamily = FontFamily(Font(R.font.roboto_bold))
                         , color = Color.Black
                         , fontSize = 14.sp
                 )
