@@ -12,8 +12,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -33,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -40,6 +44,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -84,6 +91,10 @@ fun ShowText(){
 
     var signInButtonClicked : MutableState<Boolean> = remember {
 
+        mutableStateOf(false)
+    }
+
+    var passwordIconClicked = remember {
         mutableStateOf(false)
     }
 
@@ -145,6 +156,7 @@ fun ShowText(){
                     )
                 }
             }
+            , keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
         )
 
         if(signInButtonClicked.value && ! isEmailFormatCorrect){
@@ -171,10 +183,19 @@ fun ShowText(){
                 Text(text = "Enter password")
             }
             , textStyle = MaterialTheme.typography.LoginText
+            , keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+            , visualTransformation = if(passwordIconClicked.value) VisualTransformation.None else PasswordVisualTransformation()
+            , trailingIcon = {
+                IconButton(onClick = {
+                    passwordIconClicked.value = ! passwordIconClicked.value
+                }) {
+                    Icon(imageVector = if(passwordIconClicked.value) Icons.Default.AccountCircle else Icons.Default.Lock, contentDescription = "password visibility")
+                }
+            }
         )
 
         if(signInButtonClicked.value && passwordValue.value.length < 8){
-            Text(text = "Password shouldcontain atleast 8 characters", color = Color.Red)
+            Text(text = "Password should contain atleast 8 characters", color = Color.Red)
         }
 
         Spacer(modifier = Modifier.padding(5.dp))
