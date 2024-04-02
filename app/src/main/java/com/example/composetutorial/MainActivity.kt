@@ -235,7 +235,7 @@ fun ShowText(){
 
         Row (modifier = Modifier.align(Alignment.CenterHorizontally)){
             Text(text = "Don't have an account?", style = MaterialTheme.typography.ForgotPasswordStyle.copy(color = Color.Black))
-            Text(text = "Sign up here", style = MaterialTheme.typography.ForgotPasswordStyle)
+            Text(text = "Sign up here", style = MaterialTheme.typography.ForgotPasswordStyle, modifier = Modifier.padding(start = 8.dp))
         }
 
     }
