@@ -1,5 +1,6 @@
 package com.example.composetutorial
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -201,6 +202,8 @@ fun ShowText(){
 
                 if(isEmailFormatCorrect && passwordValue.value.length > 7){
                     Toast.makeText(content,"Button clicked", Toast.LENGTH_SHORT).show()
+
+                    content.startActivity(Intent(content, DashboardActivity::class.java))
                 }
                 else {
 
