@@ -64,6 +64,9 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)           // coroutines
 
     implementation(libs.retrofit)       // retrofit
+    implementation(libs.gson)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     implementation(libs.hilt.android)  // hilt
     kapt(libs.hilt.android.compiler)
